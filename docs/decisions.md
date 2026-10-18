@@ -33,8 +33,9 @@ Product decisions agreed with Yusuf, newest last. The full reasoning is in [arch
 
 ## Explicit content filter
 
-- **17 Oct.** In the MVP, always on, separate from blocks. Arabic label: «حجب المحتوى غير اللائق», with a one-line explanation. It is checked by default at setup and the user can untick it. Turning it off counts as loosening. Making it mandatory for everyone is parked.
+- **17 Oct.** In the MVP, always on, separate from blocks. Arabic label: «حجب المحتوى غير اللائق», with a one-line explanation. It was first checked by default at setup with the option to untick it (replaced on 18 Oct, see below).
 - **18 Oct.** Filter scope for the MVP: a family-filter provider's site list, with Bannaa's own list added on top if needed, and SafeSearch forced on Google, Bing and DuckDuckGo in every browser on both phones (Android: the agent's VPN answers with SafeSearch-only addresses; iPhone: a locked family DNS in the base profile). Parked: explicit search-term blocking, filtered Instagram/X/Reddit, AI scanning of pages and images.
+- **18 Oct (evening).** The filter is mandatory, replacing the setup checkbox. Setup shows that it is being turned on and takes effect on installation, with no option to untick it. It can't be turned off later from the desktop or the phone; only retiring the phone removes it.
 
 ## iPhone
 

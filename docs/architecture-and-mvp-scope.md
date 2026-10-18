@@ -17,7 +17,7 @@ Headline decisions:
 - **Arabic is the primary language, not a translation.** The UI is RTL by default, with a full English (left-to-right) version at launch, Arabic type, Hijri dates, Arabic-region weekends, and prayer-time schedules as a later differentiator.
 - **Android is built first.** It can be set up without wiping the phone and can enforce schedules offline. iPhone follows with the same features. Its setup uses a swappable supervision step, with a no-wipe tiny restore as the target.
 - **Loosening is slow and never happens mid-block.** Every loosening waits out a cool-off delay, and nothing loosens during a focus session or schedule. At setup the user picks normal mode or strict mode, which stays on until the user asks to end it and then for 7, 30 or 90 more days.
-- **Explicit content filter on by default.** It runs at all times, separate from blocks, and turning it off counts as loosening.
+- **Explicit content filter always on.** It runs at all times, separate from blocks. Setup shows that it is being turned on, but there is no option to skip it or turn it off later.
 
 ## Feature reference
 
@@ -131,7 +131,7 @@ All three are modes of one engine. A **block** is a set of blocked apps and site
 
 Rules that keep it from being bypassed:
 
-- **Loosening is slow, tightening is instant.** Adding an app to a block, starting a session or adding a schedule applies at once. Loosening covers removing or allowing an app, shortening or cancelling a schedule, lowering the cool-off, turning off the explicit content filter and retiring the phone.
+- **Loosening is slow, tightening is instant.** Adding an app to a block, starting a session or adding a schedule applies at once. Loosening covers removing or allowing an app, shortening or cancelling a schedule, lowering the cool-off and retiring the phone.
 - **Cool-off delay.** Every loosening waits out a delay the user sets, from 0 minutes to 7 days (default 10 minutes). Delays longer than 7 days are what strict mode is for. Raising it applies at once. Lowering it is itself a loosening, so it waits out the current delay.
 - **Nothing loosens during a window.** No loosening takes effect during a focus session or scheduled window. A request made then is held until the window ends.
 - **Two modes, chosen at setup.** Normal mode (pre-selected) allows loosening after the cool-off. Strict mode is a commitment with no end date: nothing can be loosened while it is on. To leave it, the user asks the desktop to end strict mode, and the exit countdown picked at setup (7, 30 or 90 days) starts. Everything stays strict during the countdown, and the phone then returns to normal mode. Cancelling the request applies at once. A request made during a focus session or window starts counting when the window ends. The countdown length can be raised at once but never lowered while strict mode is on.
@@ -201,7 +201,7 @@ The MVP is one phone and one computer, in Arabic and English, with blocking that
 - Bannaa helper app for iPhone (Screen Time APIs), an unlisted, one-screen App Store app opened from a QR code during setup. It runs schedules and focus sessions on the phone without the desktop.
 - Category blocking (social, short video, games, news, streaming) with presets on, plus the user's own blocked apps and sites.
 - Manual block, focus sessions, weekly schedules, the cool-off delay, and normal or strict mode chosen at setup.
-- Always-on explicit content filter, separate from blocks and on 24/7. In Arabic it is labelled «حجب المحتوى غير اللائق» with a one-line explanation. It is a checkbox in setup, checked by default, which the user can untick. Making it mandatory for everyone is parked (see Future options). SafeSearch is forced on Google, Bing and DuckDuckGo in every browser on both phones. On Android: a locked family-filter DNS (such as CleanBrowsing or Cloudflare 1.1.1.3) inside the agent's VPN, which also answers search lookups with SafeSearch-only addresses, Chrome managed settings that turn off its own secure DNS, and VPN setup blocked. On iPhone: the built-in explicit-content web filter and a locked family DNS that forces SafeSearch, both in the base profile. If the provider's list misses sites, Bannaa adds its own list on top. Turning it off counts as loosening (cool-off, never during a window), and strict mode keeps it on until strict mode ends.
+- Always-on explicit content filter, separate from blocks and on 24/7. In Arabic it is labelled «حجب المحتوى غير اللائق» with a one-line explanation. Setup shows a screen saying it is being turned on and takes effect on installation, with no checkbox to untick. SafeSearch is forced on Google, Bing and DuckDuckGo in every browser on both phones. On Android: a locked family-filter DNS (such as CleanBrowsing or Cloudflare 1.1.1.3) inside the agent's VPN, which also answers search lookups with SafeSearch-only addresses, Chrome managed settings that turn off its own secure DNS, and VPN setup blocked. On iPhone: the built-in explicit-content web filter and a locked family DNS that forces SafeSearch, both in the base profile. If the provider's list misses sites, Bannaa adds its own list on top. It can't be turned off from the desktop or the phone. Only retiring the phone removes it.
 - Uninstall protection and anti-tamper restrictions from the enforcement section.
 - Wireless control from the desktop on the same Wi-Fi after setup, for loosening and rule changes. Blocks themselves run on the phone.
 - Block screen on Android and profile names on iOS, in Arabic or English to match the phone.
@@ -227,7 +227,7 @@ The MVP is one phone and one computer, in Arabic and English, with blocking that
 - [ ] Restoring with the 24 words (plus the kit file on iPhone) on a new computer regains control of the phone with no factory reset. On Android, a creator code regains control without the phrase, and any other phone, or a second use, rejects that code. A third restore without a creator code is refused.
 - [ ] Every screen passes RTL screenshot review, with no clipped Arabic at 200% text size.
 - [ ] A loosening request made during a focus session or window is held until it ends. One made during strict mode, including its exit countdown, is refused until strict mode ends.
-- [ ] With the filter on, a known adult site doesn't load in Chrome or Safari, searches on Google, Bing and DuckDuckGo return SafeSearch results in any browser, and the filter can't be turned off from the phone.
+- [ ] With the filter on, a known adult site doesn't load in Chrome or Safari, searches on Google, Bing and DuckDuckGo return SafeSearch results in any browser, and the filter can't be turned off from the phone or the desktop.
 
 ## Milestones
 
@@ -260,7 +260,6 @@ These were discussed and kept out of the MVP on purpose. The design leaves room 
 | Accountability partner | Loosening needs a PIN held by someone the user trusts (spouse, friend, parent). Works offline. | One more check in the phone's policy gate |
 | Fixed rules | Some categories can never be unblocked, like the reference product | A "never removable" flag per category, checked by the policy gate |
 | Parent mode | A parent's desktop manages a child's phone, with a consent step | The data model already lets one desktop hold keys for several phones |
-| Mandatory explicit-content filter | Filter on for everyone, with no setup checkbox | The filter is already a loosening-gated setting |
 | Optional server | Remote control away from home, self-service recovery codes, crash reports, account sync | Signed commands, pluggable recovery signer, sync-ready data |
 | Prayer-time and Ramadan presets | Blocks timed to prayers or Ramadan | The schedule engine takes any time windows |
 | Explicit search terms | Stops explicit searches before any results load | A new rule in the same filter. Android can read the browser's address bar; iPhone is limited by Apple |
@@ -300,3 +299,4 @@ Decisions and open questions:
 - [x] Strict mode: decided 18 Oct. Setup asks the user to pick normal (pre-selected) or strict. Normal allows loosening after the cool-off; strict stays on until the user asks to end it, then for a 7, 30 or 90-day exit countdown. Revised 18 Oct: the countdown starts when the user asks to leave strict mode, not at setup. Accountability-partner PIN and fixed rules are kept as future options.
 - [x] English at launch: decided 17 Oct, yes. Arabic RTL is the default and English LTR is a full second version, switched in settings.
 - [x] Explicit content filter scope: decided 18 Oct. The MVP uses a family-filter provider's site list (with Bannaa's own list added on top if needed) and forces SafeSearch on Google, Bing and DuckDuckGo in every browser on both phones. Explicit search-term blocking, filtered social apps and AI scanning are parked (see Future options).
+- [x] Explicit content filter is mandatory: decided 18 Oct (evening), replacing the setup checkbox. Setup shows that the filter is being turned on, with no option to untick it, and it can't be turned off later from the desktop or the phone. Only retiring the phone removes it.
