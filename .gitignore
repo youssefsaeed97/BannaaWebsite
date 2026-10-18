@@ -1,0 +1,45 @@
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Secrets: never commit keys, certificates or recovery material
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.keystore
+*.jks
+*.mobileprovision
+.env
+.env.*
+!.env.example
+secrets/
+master-key*
+recovery-kit*
+
+# Node / desktop UI
+node_modules/
+dist/
+
+# Rust / Tauri
+target/
+
+# Go
+desktop/ios-bridge/bin/
+
+# Android
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+
+# iOS
+DerivedData/
+xcuserdata/
+*.ipa
