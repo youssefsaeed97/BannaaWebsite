@@ -1,6 +1,6 @@
 # Bannaa: notes for AI coding assistants
 
-Read [docs/architecture-and-mvp-scope.md](docs/architecture-and-mvp-scope.md) before designing or building anything, and [docs/decisions.md](docs/decisions.md) for what has been agreed. Don't change an agreed decision without asking Yusuf first.
+Read [docs/architecture-and-mvp-scope.md](docs/architecture-and-mvp-scope.md) before designing or building anything, and [docs/decisions.md](docs/decisions.md) for what has been agreed. Build in the order of [docs/roadmap.md](docs/roadmap.md): one task at a time, each tested and merged before the next. Don't change an agreed decision without asking Yusuf first.
 
 ## Working with Yusuf
 

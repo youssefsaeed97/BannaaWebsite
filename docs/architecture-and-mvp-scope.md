@@ -117,6 +117,8 @@ The Rust core is the only part that can loosen a block. Android enforces offline
 - **Versioned protocol and updatable agent.** Every message carries a version, and the desktop can update the agent from day one. Phones already in use can then learn new features, which is the part that's hardest to fix later.
 - **Sync-ready data.** Rules, schedules and stats carry unique IDs and change times, so they can sync to an account later without migration.
 - **Keys stay on the user's devices.** Even with a server, it would hold only encrypted data and relay messages.
+- **The phone trusts a list of keys.** (Agreed 23 Oct.) The MVP caps the list at one key, the desktop's, so nothing changes for users. Later a server, a second computer or a parent's computer can be added without setting phones up again. Adding a key is a loosening: it needs the current desktop's signature, waits out the cool-off, and is refused during any block, window or strict mode. A restore or creator code replaces the list. No key holder can skip the policy gate.
+- **The delivery route is swappable.** (Agreed 23 Oct.) USB at setup and home Wi-Fi after it are the first routes; a server can be added later as another route, with the same signed commands and checks. Each command's expiry and counter stop late or duplicate deliveries.
 
 ## Focus sessions, schedules and uninstall protection
 

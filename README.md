@@ -16,6 +16,7 @@ Planning is done and the MVP scope is final (18 Oct 2026). No code yet. The buil
 | --- | --- |
 | [docs/architecture-and-mvp-scope.md](docs/architecture-and-mvp-scope.md) | The full plan: how enforcement works, architecture, rules, recovery, tech stack, MVP scope, milestones, risks |
 | [docs/decisions.md](docs/decisions.md) | Every product decision made so far, with dates, plus what is still open |
+| [docs/roadmap.md](docs/roadmap.md) | The implementation roadmap: phases, tasks, engineering standards, tests and how each step is reviewed (proposal, 21 Oct) |
 | [CLAUDE.md](CLAUDE.md) | Working rules for AI coding assistants on this repo |
 
 The plan also lives as an editable doc: https://claude.ai/code/artifact/92c68e04-ca3e-4611-99b7-1ebd14c61271 . If the two ever differ, update this repo copy to match.

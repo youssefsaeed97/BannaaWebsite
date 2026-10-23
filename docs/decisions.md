@@ -13,6 +13,7 @@ Product decisions agreed with Yusuf, newest last. The full reasoning is in [arch
 - **17 Oct.** Launch order: Egypt, then Saudi Arabia and the UAE, then the rest of MENA, then worldwide. Defaults follow Egypt: Friday-Saturday weekend, test phones Samsung, Xiaomi, Oppo, Infinix plus a Pixel.
 - **17 Oct.** Parent mode is not in the MVP. It is planned for phase 2 or 3, so the design keeps room for it.
 - **17 Oct.** No servers and no user accounts in the MVP. Identity is the 24-word phrase plus device keys. The build is server-ready: signed commands work over any route, recovery codes are a plug-in, messages are versioned, the agent is updatable, and data uses random IDs.
+- **23 Oct.** Two server-ready additions, invisible to users: (1) the phone keeps a list of trusted key holders, capped at one in the MVP. Adding a key later is a loosening: it needs the current desktop's signature, waits out the cool-off, and is refused during any block, window or strict mode. A restore or creator code replaces the list. (2) The phone link is a swappable route: Wi-Fi first, a server route later, with the same signed commands and checks. See [roadmap.md](roadmap.md).
 
 ## Languages
 
