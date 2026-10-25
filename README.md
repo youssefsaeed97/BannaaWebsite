@@ -8,7 +8,9 @@ Bannaa is an Arabic-first desktop app for Mac and Windows that locks distracting
 
 ## Status
 
-Planning is done and the MVP scope is final (18 Oct 2026). No code yet. The build starts with the phase 0 feasibility spikes in the plan.
+Planning is done and the MVP scope is final (18 Oct 2026). No app code yet. The build starts with the phase 0 feasibility spikes in the plan.
+
+The marketing website template is up (25 Oct 2026): https://d5ts1a7bd9bbi.cloudfront.net (temporary address until a domain is chosen). See [website/README.md](website/README.md).
 
 ## Documents
 
@@ -21,12 +23,13 @@ Planning is done and the MVP scope is final (18 Oct 2026). No code yet. The buil
 
 The plan also lives as an editable doc: https://claude.ai/code/artifact/92c68e04-ca3e-4611-99b7-1ebd14c61271 . If the two ever differ, update this repo copy to match.
 
-## Planned layout
+## Layout
 
-These folders don't exist yet. They are created as each part of the build starts.
+`website/` exists. The other folders don't exist yet; they are created as each part of the build starts.
 
 | Folder | Part | Stack |
 | --- | --- | --- |
+| `website/` | Marketing website (static, separate from the app) | React + TypeScript + Vite, hosted on S3 + CloudFront, deployed by GitHub Actions |
 | `desktop/` | Desktop app | Tauri 2, Rust core, React + TypeScript + Vite, Tailwind, i18next |
 | `desktop/ios-bridge/` | iPhone USB and profile sidecar | Go on go-ios (MIT) |
 | `android-agent/` | Android device-owner agent | Kotlin, Jetpack Compose, minSdk 26 |

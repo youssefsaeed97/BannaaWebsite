@@ -169,6 +169,7 @@ GitHub Actions runs on every PR, only for the parts that changed:
 - Secret scan, vulnerability scan, license check.
 - Android emulator tests for agent changes.
 - macOS and Windows desktop builds on merges to `main` and for releases (Mac minutes cost 10 times more on GitHub's free plan, so not on every commit).
+- The marketing website deploys to S3 and CloudFront on merges to `main` that change `website/` (`.github/workflows/deploy-website.yml`).
 
 ### 2.10 Documentation
 
@@ -308,6 +309,16 @@ Goal: safe to hand to real users.
 ### Phase 5: After the MVP
 
 From the plan's "Future options": prayer-time and Ramadan presets first, then several phones per desktop, parent mode with consent, and the optional server. Each gets its own short plan when we get there.
+
+### Side track: marketing website
+
+Runs alongside the phases and never blocks them. Added 25 Oct (Karim); see [decisions.md](decisions.md#website).
+
+| # | Task | Done when | Size | |
+| --- | --- | --- | --- | --- |
+| W.1 | **Website template and deploy pipeline.** React template in `website/`, S3 bucket and CloudFront, GitHub Actions deploy on push to `main`. | Site loads on the CloudFront address; a push to `main` updates it ✅ (template and AWS done 25 Oct; the first automatic deploy runs once this is merged) | S | |
+| W.2 | **Domain and HTTPS certificate.** Pick the domain, ACM certificate in us-east-1, point DNS at CloudFront. | The site loads on the real domain over HTTPS | S | 🟡 |
+| W.3 | **Real content.** Copy written in Arabic first, then English ; no Shift text or design. | Copy signed off in both languages | M | 🟡 👀 |
 
 ## 5. What I need from you before we start
 

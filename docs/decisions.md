@@ -51,6 +51,12 @@ Product decisions agreed with Yusuf, newest last. The full reasoning is in [arch
 - **17 Oct.** A restore never resets rules. Nothing loosens for 24 hours after a restore, and a re-key shows a takeover notice and waits a few hours.
 - **17 Oct.** On iPhone, the helper app holds a sealed copy of the kit and words, locked with a per-phone key that is itself locked to the creator's public key.
 
+## Website
+
+- **25 Oct (Karim, to confirm with Yusuf).** A public marketing website lives in `website/` (React, TypeScript, Vite). It is a static site: S3 bucket behind CloudFront, in the existing AWS account, region us-east-1. It is separate from the product, so "no servers in the MVP" still holds: the app never talks to the website, and no user data goes there. Arabic RTL first with an English version, same as the app.
+- **25 Oct (Karim, to confirm with Yusuf).** Every push to `main` that changes `website/` deploys it automatically (GitHub Actions: lint, build, upload to S3, clear the CloudFront cache). GitHub signs in to AWS with OIDC, so no AWS keys are stored in GitHub.
+- **Open.** The domain name (the site is on a temporary CloudFront address for now).
+
 ## Parked (not in the MVP)
 
 Accountability-partner PIN, fixed never-removable categories, parent mode, mandatory explicit content filter, optional server, prayer-time and Ramadan presets. See "Future options" in the plan.

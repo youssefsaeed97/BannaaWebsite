@@ -189,6 +189,7 @@ The recommendation is Tauri 2: a Rust core with a React UI, and a small Go sidec
 | Local data | SQLite (SQLCipher). Keys in macOS Keychain or Windows Credential Manager | Encrypted at rest | None |
 | App categories | iOS: the public iTunes lookup API by bundle ID for the genre. Android: a curated JSON catalogue, updated in releases | Lets blocking follow categories without the user picking apps | None |
 | Release | Apple Developer ID and notarization, App Store for the iPhone helper. Windows code signing (Azure Trusted Signing) | Stops Gatekeeper and SmartScreen warnings that scare users off | None |
+| Marketing website | React, TypeScript, Vite, a static build on S3 behind CloudFront, deployed by GitHub Actions (added 25 Oct) | Cheap static hosting with no server code. Separate from the app: it never talks to the desktop or the phone | Any static host |
 
 On Windows, iPhone USB needs Apple's driver, which comes with the "Apple Devices" app from the Microsoft Store. Bannaa can't bundle it, so the wizard detects it and links to it.
 

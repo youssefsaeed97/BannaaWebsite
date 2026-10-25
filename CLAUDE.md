@@ -28,3 +28,11 @@ Read [docs/architecture-and-mvp-scope.md](docs/architecture-and-mvp-scope.md) be
 ## Planned layout
 
 `desktop/` (Tauri 2 + Rust + React), `desktop/ios-bridge/` (Go on go-ios), `android-agent/` (Kotlin), `ios-helper/` (Swift), `tools/recovery-signer/` (Rust). Only permissive licenses (MIT, Apache). No GPL or LGPL libraries without a license review.
+
+## Website (`website/`)
+
+- The marketing site, separate from the app. The app never calls it and no user data goes to it. React 19 + TypeScript + Vite, linted with oxlint (`npm run lint`, `npm run build`).
+- Strings live in `website/src/i18n/strings.ts` (Arabic first, English mirrors it key for key). Use them through `useLanguage()`. The Arabic-first and logical-CSS rules above apply here too.
+- Hosting: private S3 bucket `bannaa-website-161099087454` (us-east-1), read only by CloudFront distribution `E27SBJIMAEVHNW` (`d5ts1a7bd9bbi.cloudfront.net`) through Origin Access Control. 403/404 return `/index.html`, so client-side routes work.
+- Deploy: `.github/workflows/deploy-website.yml` runs on pushes to `main` that touch `website/`. It assumes IAM role `bannaa-website-deploy` through GitHub OIDC (trusted only for `main` of `youssefsaeed97/Bannaa`; allowed only to write that bucket and invalidate that distribution). Never add AWS access keys to the repo or to GitHub secrets.
+- Caching: `assets/` (hashed file names) is uploaded with a one-year immutable cache; everything else with `no-cache`. Only files with hashed names may go in `assets/`.
