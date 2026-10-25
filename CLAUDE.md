@@ -31,7 +31,8 @@ Read [docs/architecture-and-mvp-scope.md](docs/architecture-and-mvp-scope.md) be
 
 ## Website (`website/`)
 
-- The marketing site, separate from the app. The app never calls it and no user data goes to it. React 19 + TypeScript + Vite, linted with oxlint (`npm run lint`, `npm run build`).
+- The marketing site, separate from the app. The app never calls it and no user data goes to it. React 19 + TypeScript + Vite. `npm run lint` runs oxlint plus `scripts/check-logical-css.mjs`, which fails on any left/right style; `npm run build` type-checks and builds.
+- It is a customer-facing landing page: no technical terms, no internal plans, no price, dates or iPhone availability. Every claim must match `docs/`.
 - Strings live in `website/src/i18n/strings.ts` (Arabic first, English mirrors it key for key). Use them through `useLanguage()`. The Arabic-first and logical-CSS rules above apply here too.
 - Hosting: private S3 bucket `bannaa-website-161099087454` (us-east-1), read only by CloudFront distribution `E27SBJIMAEVHNW` (`d5ts1a7bd9bbi.cloudfront.net`) through Origin Access Control. 403/404 return `/index.html`, so client-side routes work.
 - Deploy: `.github/workflows/deploy-website.yml` runs on pushes to `main` that touch `website/`. It assumes IAM role `bannaa-website-deploy` through GitHub OIDC (trusted only for `main` of `youssefsaeed97/Bannaa`; allowed only to write that bucket and invalidate that distribution). Never add AWS access keys to the repo or to GitHub secrets.

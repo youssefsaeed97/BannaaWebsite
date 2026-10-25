@@ -9,7 +9,7 @@ Live (temporary address): https://d5ts1a7bd9bbi.cloudfront.net
 ```sh
 npm install
 npm run dev      # local dev server
-npm run lint     # oxlint
+npm run lint     # oxlint + logical-CSS check (no left/right in styles)
 npm run build    # type-check and build into dist/
 npm run preview  # serve the built dist/
 ```
@@ -21,12 +21,17 @@ npm run preview  # serve the built dist/
 - All text is in `src/i18n/strings.ts`. Write the Arabic first; English mirrors it key for key. Components read it with `useLanguage()`.
 - Styles use CSS logical properties only (`margin-inline`, `padding-block`, …), never `left` or `right`.
 
+- The page is one landing page for customers: hero, the problem, how it works, features, the cool-off and strict mode, the content filter and privacy, "designed in Arabic first", what you need, FAQ, and a closing "coming soon".
+- Copy comes from the product plan (`docs/`) and is placeholder until the real copy is signed off. Don't claim a price, launch dates or iPhone availability, and keep technical terms off the page.
+
 ```
 src/
-  App.tsx            page layout
-  components/        Header, Hero, Features, Footer
-  i18n/              strings, language context and useLanguage()
+  App.tsx            section order
+  components/        one file per section, plus Icon, Logo and PhoneMock (the hero illustration)
+  i18n/              strings (Arabic first), language context, useLanguage()
   index.css          design tokens and styles (light and dark)
+scripts/
+  check-logical-css.mjs   fails the lint on left/right styles
 ```
 
 ## Deploy
